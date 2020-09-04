@@ -63,7 +63,7 @@ export class ProductService {
       this.ProductList.push(productDetails);
     } else {
       this.getProductList(localstrkey);
-      if (productDetails.id == 0) {
+      if (productDetails.id == null) {
         productDetails.id =
           this.ProductList[this.ProductList.length - 1].id +
           1;

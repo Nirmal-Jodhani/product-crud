@@ -95,7 +95,7 @@ export class ProductActionComponent implements OnInit {
   // inintialize the form
   initializeFormControl() {
     this.productForm = this.fb.group({
-      id: [0],
+      id: [null],
       name: ['', Validators.required],
       description: ['', Validators.compose([Validators.required, Validators.minLength(50)])],
       imageUrl: ['', Validators.compose([Validators.required, Validators.pattern(this.regexForImageUrl)])],
