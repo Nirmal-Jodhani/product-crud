@@ -1,0 +1,35 @@
+<div>
+    <button style="float: right;" routerLink="/product-add">Add new product</button>
+</div>
+<div *ngIf="productList.length == 0">
+    No Products avaiable.
+</div>
+<div *ngIf="productList.length != 0">
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of productList">
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td><img class="product-image" src="{{item.imageUrl}}"></td>
+                <td>{{item.category}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button [routerLink]="'/product-edit/'+item.id">Edit</button> &nbsp;&nbsp;
+                    <!-- <button [routerLink]="'/product-edit/'+item._id">Edit</button> &nbsp;&nbsp; -->
+                    <button (click)="deleteProduce(item)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

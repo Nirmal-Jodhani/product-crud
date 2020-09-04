@@ -1,0 +1,107 @@
+<div>
+    <div>
+        <button routerLink="/productList">Back</button>
+    </div>
+    <div>
+        <h2>Product Add/Edit</h2>
+    </div>
+
+    <form [formGroup]="productForm" (ngSubmit)="SaveUpdateProduct()">
+        <table >
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    <input type="text" formControlName="name">
+                    <div *ngIf="productFormControl.name.invalid && (productFormControl.name.dirty || productFormControl.name.touched)"
+                        class="error">
+                        <ng-container *ngIf="productFormControl.name.errors.required">
+                            Product name is required.
+                        </ng-container>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Description
+                </td>
+                <td>
+                    <input type="text" formControlName="description">
+                    <div *ngIf="productFormControl.description.invalid && (productFormControl.description.dirty || productFormControl.description.touched)"
+                        class="error">
+                        <ng-container *ngIf="productFormControl.description.errors.required">
+                            Product description is required.
+                        </ng-container>
+                        <ng-container *ngIf="productFormControl.description.errors.minlength">
+                            Product description min. length 50 characters.
+                        </ng-container>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    ImageUrl
+                </td>
+                <td>
+                    <input type="text" formControlName="imageUrl">
+                    <div *ngIf="productFormControl.imageUrl.invalid && (productFormControl.imageUrl.dirty || productFormControl.imageUrl.touched)"
+                        class="error">
+                        <ng-container *ngIf="productFormControl.imageUrl.errors.required">
+                            Product imageUrl is required.
+                        </ng-container>
+                        <ng-container *ngIf="productFormControl.imageUrl.errors.pattern">
+                            Product imageUrl not valid.
+                        </ng-container>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Category
+                </td>
+                <td>
+                    <div *ngFor="let cat of productForm.get('category')['controls']; let i=index;"
+                        formArrayName="category">
+                        <input type="checkbox" [formControlName]="i"> {{productCategory[i].name}}
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Price
+                </td>
+                <td>
+                    <input type="number" formControlName="price" min="1">
+                    <div *ngIf="productFormControl.price.invalid && (productFormControl.price.dirty || productFormControl.price.touched)"
+                        class="error">
+                        <ng-container *ngIf="productFormControl.price.errors.required">
+                            Product price is required.
+                        </ng-container>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Profit
+                </td>
+                <td>
+                    <input type="text" formControlName="profit" min="1">
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+
+        </table>
+        
+    </form>
+</div>
